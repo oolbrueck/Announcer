@@ -3,30 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Text-to-Speech Example</title>
-    <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
 </head>
 <body>
-    <button onclick="startPlayback()">Start</button>
-    <button onclick="stopPlayback()">Stop</button>
+    <button onclick="speakText()">Text abspielen</button>
 
     <script>
-        const phrases = ["oben links", "oben rechts", "unten rechts", "unten links"];
-        let intervalId;
-
-        function startPlayback() {
-            intervalId = setInterval(function() {
-                const randomIndex = Math.floor(Math.random() * phrases.length);
-                const phrase = phrases[randomIndex];
-                speak(phrase);
-            }, 5000);
-        }
-
-        function stopPlayback() {
-            clearInterval(intervalId);
-        }
-
-        function speak(text) {
-            responsiveVoice.speak(text);
+        function speakText() {
+            var x = new SpeechSynthesisUtterance();
+            x.text = "hello";
+            speechSynthesis.speak(x);
         }
     </script>
 </body>
