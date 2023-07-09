@@ -5,23 +5,30 @@
     <title>Text-to-Speech Example</title>
 </head>
 <body>
-    <button onclick="startPlayback()">Start</button>
-    <button onclick="stopPlayback()">Stop</button>
+    <button onclick="playRandomPhrases()">Text abspielen</button>
 
     <script>
         const phrases = ["oben links", "oben rechts", "unten rechts", "unten links"];
-        let intervalId;
+        const numPhrases = 20;
 
-        function startPlayback() {
-            intervalId = setInterval(function() {
-                const randomIndex = Math.floor(Math.random() * phrases.length);
-                const phrase = phrases[randomIndex];
-                speak(phrase);
-            }, 5000);
+        function playRandomPhrases() {
+            const randomPhrases = getRandomPhrases();
+            const fullText = randomPhrases.join(" ");
+            speak(fullText);
         }
 
-        function stopPlayback() {
-            clearInterval(intervalId);
+        function getRandomPhrases() {
+            const shuffledPhrases = shuffleArray(phrases);
+            return shuffledPhrases.slice(0, numPhrases);
+        }
+
+        function shuffleArray(array) {
+            const shuffled = array.slice();
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
         }
 
         function speak(text) {
@@ -32,5 +39,6 @@
     </script>
 </body>
 </html>
+
 
 
