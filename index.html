@@ -3,29 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Text-to-Speech Example</title>
+    <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
 </head>
 <body>
+    <button onclick="speak('Hallo, wie geht es dir?')">Text abspielen</button>
+
     <script>
-        const phrases = ["oben links", "oben rechts", "unten rechts", "unten links"];
-
-        function playSounds() {
-            setInterval(function() {
-                const randomIndex = Math.floor(Math.random() * phrases.length);
-                const phrase = phrases[randomIndex];
-                speak(phrase);
-            }, 4000);
-        }
-
         function speak(text) {
-            if ('speechSynthesis' in window) {
-                const utterance = new SpeechSynthesisUtterance(text);
-                window.speechSynthesis.speak(utterance);
-            } else {
-                console.error('Die Web Speech API wird in diesem Browser nicht unterstützt.');
-            }
+            responsiveVoice.speak(text);
         }
-
-        playSounds();
     </script>
 </body>
 </html>
