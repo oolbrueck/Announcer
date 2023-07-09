@@ -5,15 +5,32 @@
     <title>Text-to-Speech Example</title>
 </head>
 <body>
-    <button onclick="speakText()">Text abspielen</button>
+    <button onclick="startPlayback()">Start</button>
+    <button onclick="stopPlayback()">Stop</button>
 
     <script>
-        function speakText() {
+        const phrases = ["oben links", "oben rechts", "unten rechts", "unten links"];
+        let intervalId;
+
+        function startPlayback() {
+            intervalId = setInterval(function() {
+                const randomIndex = Math.floor(Math.random() * phrases.length);
+                const phrase = phrases[randomIndex];
+                speak(phrase);
+            }, 5000);
+        }
+
+        function stopPlayback() {
+            clearInterval(intervalId);
+        }
+
+        function speak(text) {
             var x = new SpeechSynthesisUtterance();
-            x.text = "hello";
+            x.text = text;
             speechSynthesis.speak(x);
         }
     </script>
 </body>
 </html>
+
 
