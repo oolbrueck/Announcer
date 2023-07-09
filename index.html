@@ -18,17 +18,19 @@
         }
 
         function getRandomPhrases() {
-            const shuffledPhrases = shuffleArray(phrases);
-            return shuffledPhrases.slice(0, numPhrases);
+            const randomIndices = generateRandomIndices();
+            return randomIndices.map(index => phrases[index]);
         }
 
-        function shuffleArray(array) {
-            const shuffled = array.slice();
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        function generateRandomIndices() {
+            const indices = [];
+            while (indices.length < numPhrases) {
+                const randomIndex = Math.floor(Math.random() * phrases.length);
+                if (!indices.includes(randomIndex)) {
+                    indices.push(randomIndex);
+                }
             }
-            return shuffled;
+            return indices;
         }
 
         function speak(text) {
@@ -39,6 +41,7 @@
     </script>
 </body>
 </html>
+
 
 
 
