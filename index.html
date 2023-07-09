@@ -6,12 +6,22 @@
     <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
 </head>
 <body>
-    <button onclick="speak('Hallo, wie geht es dir?')">Text abspielen</button>
-
     <script>
+        const phrases = ["oben links", "oben rechts", "unten rechts", "unten links"];
+
+        function playPhrases() {
+            setInterval(function() {
+                const randomIndex = Math.floor(Math.random() * phrases.length);
+                const phrase = phrases[randomIndex];
+                speak(phrase);
+            }, 5000);
+        }
+
         function speak(text) {
             responsiveVoice.speak(text);
         }
+
+        playPhrases();
     </script>
 </body>
 </html>
