@@ -1,1 +1,31 @@
-:O
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Text-to-Speech Example</title>
+</head>
+<body>
+    <script>
+        const phrases = ["oben links", "oben rechts", "unten rechts", "unten links"];
+
+        function playSounds() {
+            setInterval(function() {
+                const randomIndex = Math.floor(Math.random() * phrases.length);
+                const phrase = phrases[randomIndex];
+                speak(phrase);
+            }, 10000);
+        }
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                window.speechSynthesis.speak(utterance);
+            } else {
+                console.error('Die Web Speech API wird in diesem Browser nicht unterstützt.');
+            }
+        }
+
+        playSounds();
+    </script>
+</body>
+</html>
