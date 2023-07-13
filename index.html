@@ -2,15 +2,26 @@
 <html>
 <head>
   <title>Text-to-Speech</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap">
   <script src="script.js"></script>
 </head>
 <body>
+<div class="main-style">
   <h1>Text-to-Speech</h1>
   <textarea id="text" rows="4" cols="50" placeholder="Gib den Text ein"></textarea>
   <br>
   <button onclick="convertTextToSpeech()">Text in Sprache umwandeln</button>
+</div>
+
 </body>
 </html>
+<style>
+  .main-style {
+  display: flex;
+  justify-content: center;
+  font-family: 'Oxygen', sans-serif;
+  }
+</style>
 
 
 
