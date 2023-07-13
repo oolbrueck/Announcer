@@ -10,6 +10,13 @@
       var utterance = new SpeechSynthesisUtterance();
       utterance.text = text;
       
+      // Füge eine Pause nach jedem Satzzeichen ein
+      utterance.onboundary = function(event) {
+        if (event.name === 'sentence') {
+          utterance.pause = 1000; // Pausendauer in Millisekunden (hier: 500ms)
+        }
+      };
+      
       // Warte auf die Fertigstellung der Sprachsynthese
       utterance.onend = function() {
         console.log('Sprachsynthese abgeschlossen.');
@@ -20,12 +27,6 @@
         // Erstelle ein Audio-Element und spiele die erzeugte Audiodatei ab
         var audio = new Audio(audioURL);
         audio.play();
-        
-        // Alternativ kannst du die Audiodatei auch herunterladen
-        // var downloadLink = document.createElement('a');
-        // downloadLink.href = audioURL;
-        // downloadLink.download = 'audio.mp3';
-        // downloadLink.click();
       };
       
       // Starte die Sprachsynthese
@@ -40,6 +41,7 @@
   <button onclick="convertTextToSpeech()">Text in Sprache umwandeln</button>
 </body>
 </html>
+
 
 
 
