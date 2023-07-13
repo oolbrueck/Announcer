@@ -5,6 +5,8 @@
   <script>
     function convertTextToSpeech() {
       var text = document.getElementById('text').value;
+      text = text + text;
+      text = text + text;
       var words = text.split(' ');
       
       playWords(words, 0);
