@@ -1,46 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Text-to-Speech Example</title>
-</head>
-<body>
-    <button onclick="playRandomPhrases()">Text abspielen</button>
+// Überprüfe die Browser-Unterstützung für die Web Speech API
+if ('speechSynthesis' in window) {
+  var synthesis = window.speechSynthesis;
 
-    <script>
-        const phrases = ["oben links", "oben rechts", "unten rechts", "unten links"];
-        const numPhrases = 20;
+  // Erstelle ein neues SpeechSynthesisUtterance-Objekt
+  var utterance = new SpeechSynthesisUtterance();
+  utterance.text = 'Hallo, dies ist ein Beispieltext.';
+  
+  // Warte auf die Fertigstellung der Sprachsynthese
+  utterance.onend = function() {
+    console.log('Sprachsynthese abgeschlossen.');
 
-        function playRandomPhrases() {
-            const randomPhrases = getRandomPhrases();
-            const fullText = randomPhrases.join(" ");
-            speak(fullText);
-        }
+    // Konvertiere das SpeechSynthesisUtterance-Objekt in eine Audiodatei
+    var audioURL = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(utterance)]));
 
-        function getRandomPhrases() {
-            const randomIndices = generateRandomIndices();
-            return randomIndices.map(index => phrases[index]);
-        }
+    // Erstelle ein Audio-Element und spiele die erzeugte Audiodatei ab
+    var audio = new Audio(audioURL);
+    audio.play();
 
-        function generateRandomIndices() {
-            const indices = [];
-            while (indices.length < numPhrases) {
-                const randomIndex = Math.floor(Math.random() * phrases.length);
-                if (!indices.includes(randomIndex)) {
-                    indices.push(randomIndex);
-                }
-            }
-            return indices;
-        }
+    // Alternativ kannst du die Audiodatei auch herunterladen
+    // var downloadLink = document.createElement('a');
+    // downloadLink.href = audioURL;
+    // downloadLink.download = 'audio.mp3';
+    // downloadLink.click();
+  };
 
-        function speak(text) {
-            var x = new SpeechSynthesisUtterance();
-            x.text = text;
-            speechSynthesis.speak(x);
-        }
-    </script>
-</body>
-</html>
+  // Starte die Sprachsynthese
+  synthesis.speak(utterance);
+} else {
+  console.log('Die Web Speech API wird in diesem Browser nicht unterstützt.');
+}
+
 
 
 
