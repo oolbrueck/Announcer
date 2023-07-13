@@ -5,32 +5,23 @@
   <script>
     function convertTextToSpeech() {
       var text = document.getElementById('text').value;
+      var words = text.split(' ');
       
-      // Erstelle ein neues SpeechSynthesisUtterance-Objekt
-      var utterance = new SpeechSynthesisUtterance();
-      utterance.text = text;
-      
-      // Füge eine Pause nach jedem Satzzeichen ein
-      utterance.onboundary = function(event) {
-        if (event.name === 'sentence') {
-          utterance.pause = 1000; // Pausendauer in Millisekunden (hier: 500ms)
-        }
-      };
-      
-      // Warte auf die Fertigstellung der Sprachsynthese
-      utterance.onend = function() {
-        console.log('Sprachsynthese abgeschlossen.');
+      playWords(words, 0);
+    }
+    
+    function playWords(words, index) {
+      if (index < words.length) {
+        var utterance = new SpeechSynthesisUtterance(words[index]);
         
-        // Konvertiere das SpeechSynthesisUtterance-Objekt in eine Audiodatei
-        var audioURL = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(utterance)]));
+        utterance.onend = function() {
+          setTimeout(function() {
+            playWords(words, index + 1);
+          }, 2000); // Pausendauer zwischen den Wörtern in Millisekunden (hier: 200ms)
+        };
         
-        // Erstelle ein Audio-Element und spiele die erzeugte Audiodatei ab
-        var audio = new Audio(audioURL);
-        audio.play();
-      };
-      
-      // Starte die Sprachsynthese
-      speechSynthesis.speak(utterance);
+        speechSynthesis.speak(utterance);
+      }
     }
   </script>
 </head>
@@ -41,6 +32,7 @@
   <button onclick="convertTextToSpeech()">Text in Sprache umwandeln</button>
 </body>
 </html>
+
 
 
 
