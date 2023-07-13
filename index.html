@@ -1,34 +1,46 @@
-// Überprüfe die Browser-Unterstützung für die Web Speech API
-if ('speechSynthesis' in window) {
-  var synthesis = window.speechSynthesis;
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Text-to-Speech</title>
+  <script>
+    function convertTextToSpeech() {
+      var text = document.getElementById('text').value;
+      
+      // Erstelle ein neues SpeechSynthesisUtterance-Objekt
+      var utterance = new SpeechSynthesisUtterance();
+      utterance.text = text;
+      
+      // Warte auf die Fertigstellung der Sprachsynthese
+      utterance.onend = function() {
+        console.log('Sprachsynthese abgeschlossen.');
+        
+        // Konvertiere das SpeechSynthesisUtterance-Objekt in eine Audiodatei
+        var audioURL = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(utterance)]));
+        
+        // Erstelle ein Audio-Element und spiele die erzeugte Audiodatei ab
+        var audio = new Audio(audioURL);
+        audio.play();
+        
+        // Alternativ kannst du die Audiodatei auch herunterladen
+        // var downloadLink = document.createElement('a');
+        // downloadLink.href = audioURL;
+        // downloadLink.download = 'audio.mp3';
+        // downloadLink.click();
+      };
+      
+      // Starte die Sprachsynthese
+      speechSynthesis.speak(utterance);
+    }
+  </script>
+</head>
+<body>
+  <h1>Text-to-Speech</h1>
+  <textarea id="text" rows="4" cols="50" placeholder="Gib den Text ein"></textarea>
+  <br>
+  <button onclick="convertTextToSpeech()">Text in Sprache umwandeln</button>
+</body>
+</html>
 
-  // Erstelle ein neues SpeechSynthesisUtterance-Objekt
-  var utterance = new SpeechSynthesisUtterance();
-  utterance.text = 'Hallo, dies ist ein Beispieltext.';
-  
-  // Warte auf die Fertigstellung der Sprachsynthese
-  utterance.onend = function() {
-    console.log('Sprachsynthese abgeschlossen.');
-
-    // Konvertiere das SpeechSynthesisUtterance-Objekt in eine Audiodatei
-    var audioURL = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(utterance)]));
-
-    // Erstelle ein Audio-Element und spiele die erzeugte Audiodatei ab
-    var audio = new Audio(audioURL);
-    audio.play();
-
-    // Alternativ kannst du die Audiodatei auch herunterladen
-    // var downloadLink = document.createElement('a');
-    // downloadLink.href = audioURL;
-    // downloadLink.download = 'audio.mp3';
-    // downloadLink.click();
-  };
-
-  // Starte die Sprachsynthese
-  synthesis.speak(utterance);
-} else {
-  console.log('Die Web Speech API wird in diesem Browser nicht unterstützt.');
-}
 
 
 
