@@ -2,30 +2,7 @@
 <html>
 <head>
   <title>Text-to-Speech</title>
-  <script>
-    function convertTextToSpeech() {
-      var text = document.getElementById('text').value;
-      text = text + text;
-      text = text + text;
-      var words = text.split(' ');
-      
-      playWords(words, 0);
-    }
-    
-    function playWords(words, index) {
-      if (index < words.length) {
-        var utterance = new SpeechSynthesisUtterance(words[index]);
-        
-        utterance.onend = function() {
-          setTimeout(function() {
-            playWords(words, index + 1);
-          }, 2000); // Pausendauer zwischen den Wörtern in Millisekunden (hier: 200ms)
-        };
-        
-        speechSynthesis.speak(utterance);
-      }
-    }
-  </script>
+  <script src="script.js"></script>
 </head>
 <body>
   <h1>Text-to-Speech</h1>
@@ -34,6 +11,7 @@
   <button onclick="convertTextToSpeech()">Text in Sprache umwandeln</button>
 </body>
 </html>
+
 
 
 
