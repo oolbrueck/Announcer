@@ -7,19 +7,139 @@
 </head>
 <body>
 <div class="main-style">
-  <h1>Text-to-Speech</h1>
-  <textarea id="text" rows="4" cols="50" placeholder="Gib den Text ein"></textarea>
-  <br>
-  <button onclick="convertTextToSpeech()">Text in Sprache umwandeln</button>
+  <div class="head" style="border: 2px solid yellow;">
+    <h1>Announcer</h1>
+  </div>
+  <div class="form" style="border: 2px solid blue;">
+    <div class="wordInput" style="border: 2px solid red;">
+      <div style="display: flex;justify-content: center;">
+        <input type="text" class="text-field" placeholder="Gib den Text ein">
+        <button onclick="addWord()">+</button>
+      </div>
+      <div style="display: inline;">
+        <div class="chip">
+          John Doe
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+        <div class="chip">
+          John Doe
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+        <div class="chip">
+          John Doe
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+        <div class="chip">
+          John Doe
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+        <div class="chip">
+          John Doe
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+        <div class="chip">
+          John Doe
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+        <div class="chip">
+          John Doe
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+        <div class="chip">
+          John Doe
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+        <div class="chip">
+          John Doe
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+        <div class="chip">
+          John Doe
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+        <div class="chip">
+          John Doe
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+        <div class="chip">
+          John Doe
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+        <div class="chip">
+          John Doe
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+        <div class="chip">
+          John Doe
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+        <div class="chip">
+          John Doe
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+      </div>
+    </div>
+    <button onclick="convertTextToSpeech()">Text in Sprache umwandeln</button>
+  </div>
 </div>
 
 </body>
 </html>
 <style>
+  @media (max-width: 480px) {
+      .text-field {
+        font-size: 18px;
+        padding: 10px;
+      }
+  }
   .main-style {
+  display: block;
+  font-family: 'Oxygen', sans-serif;
+  }
+  .head {
   display: flex;
   justify-content: center;
-  font-family: 'Oxygen', sans-serif;
+  }
+  .form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  }
+  .wordInput {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  }
+  .chip {
+  display: inline-block;
+  padding: 0 25px;
+  height: 50px;
+  font-size: 18px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: #f1f1f1;
+  }
+
+  .chip img {
+  float: left;
+  margin: 0 10px 0 -25px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  }
+
+  .closebtn {
+  padding-left: 10px;
+  color: #888;
+  font-weight: bold;
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+  }
+
+  .closebtn:hover {
+  color: #000;
   }
 </style>
 
