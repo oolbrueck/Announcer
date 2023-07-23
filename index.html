@@ -3,7 +3,7 @@
 <head>
   <title>Text-to-Speech</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="script.js"></script>
 </head>
 <body>
@@ -15,14 +15,14 @@
     <div class="wordInput" style="border: 2px solid red;">
       <div style="display: flex;justify-content: center;">
         <input type="text" class="text-field" placeholder="Gib den Text ein" id="chip-input">
-        <button onclick="addChip()">+</button>
+        <button class="button" onclick="addChip()">+</button>
       </div>
       <div id="chips-container" style="display: inline;">
       </div>
     </div>
     <input type="number" class="number-field" placeholder="Wiederholungen" id="number-of-announcements-input">
     <input type="number" class="number-field" placeholder="Pause in ms" id="break-time">
-    <button onclick="convertTextToSpeech()">Text in Sprache umwandeln</button>
+    <button class="button" onclick="convertTextToSpeech()">Text in Sprache umwandeln</button>
   </div>
 </div>
 
@@ -32,6 +32,7 @@
   .main-style {
   display: block;
   font-family: 'Oxygen', sans-serif;
+  font-size: 16px;
   }
   .head {
   display: flex;
@@ -57,7 +58,6 @@
   border-radius: 25px;
   background-color: #f1f1f1;
   }
-
   .chip img {
   float: left;
   margin: 0 10px 0 -25px;
@@ -65,7 +65,6 @@
   width: 50px;
   border-radius: 50%;
   }
-
   .closebtn {
   padding-left: 10px;
   color: #888;
@@ -74,10 +73,19 @@
   font-size: 20px;
   cursor: pointer;
   }
-
   .closebtn:hover {
   color: #000;
   }
+  .text-field {
+  font-size: 16px;
+  }
+  .number-field {
+  font-size: 16px;
+  }
+  .button {
+  font-size: 16px;
+  }
+
 </style>
 
 
