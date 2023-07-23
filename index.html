@@ -14,68 +14,14 @@
   <div class="form" style="border: 2px solid blue;">
     <div class="wordInput" style="border: 2px solid red;">
       <div style="display: flex;justify-content: center;">
-        <input type="text" class="text-field" placeholder="Gib den Text ein">
-        <button onclick="addWord()">+</button>
+        <input type="text" class="text-field" placeholder="Gib den Text ein" id="chip-input">
+        <button onclick="addChip()">+</button>
       </div>
-      <div style="display: inline;">
-        <div class="chip">
-          John Doe
-          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-        <div class="chip">
-          John Doe
-          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-        <div class="chip">
-          John Doe
-          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-        <div class="chip">
-          John Doe
-          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-        <div class="chip">
-          John Doe
-          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-        <div class="chip">
-          John Doe
-          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-        <div class="chip">
-          John Doe
-          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-        <div class="chip">
-          John Doe
-          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-        <div class="chip">
-          John Doe
-          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-        <div class="chip">
-          John Doe
-          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-        <div class="chip">
-          John Doe
-          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-        <div class="chip">
-          John Doe
-          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-        <div class="chip">
-          John Doe
-          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-        <div class="chip">
-          John Doe
-          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
+      <div id="chips-container" style="display: inline;">
       </div>
     </div>
+    <input type="number" class="number-field" placeholder="Wiederholungen" id="number-of-announcements-input">
+    <input type="number" class="number-field" placeholder="Pause in ms" id="break-time">
     <button onclick="convertTextToSpeech()">Text in Sprache umwandeln</button>
   </div>
 </div>
@@ -83,12 +29,6 @@
 </body>
 </html>
 <style>
-  @media (max-width: 480px) {
-      .text-field {
-        font-size: 18px;
-        padding: 10px;
-      }
-  }
   .main-style {
   display: block;
   font-family: 'Oxygen', sans-serif;
